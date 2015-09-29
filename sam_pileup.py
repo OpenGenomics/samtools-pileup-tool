@@ -13,7 +13,6 @@ usage: %prog [options]
    -g, --index=g: Path of the indexed reference genome
    -s, --lastCol=s: Print the mapping quality as the last column
    -i, --indels=i: Only output lines containing indels
-   -M, --mapCap=M: Cap mapping quality
    -c, --consensus=c: Call the consensus sequence using MAQ consensu model
    -T, --theta=T: Theta paramter (error dependency coefficient)
    -N, --hapNum=N: Number of haplotypes in sample
@@ -117,7 +116,8 @@ def __main__():
         indels = '-i'
     else:
         indels = ''
-    opts = '%s %s -M %s' % ( lastCol, indels, options.mapCap )
+    #opts = '%s %s -M %s' % ( lastCol, indels, options.mapCap )
+    opts = ''
     if options.consensus == 'yes':
         opts += ' -c -T %s -N %s -r %s -I %s' % ( options.theta, options.hapNum, options.fraction, options.phredProb )
     #prepare basic pileup command
