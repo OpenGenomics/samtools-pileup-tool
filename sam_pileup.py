@@ -13,6 +13,7 @@ usage: %prog [options]
    -g, --index=g: Path of the indexed reference genome
    -s, --lastCol=s: Print the mapping quality as the last column
    -i, --indels=i: Only output lines containing indels
+   -B, --nobaq=s: disable BAQ computation
    -c, --consensus=c: Call the consensus sequence using MAQ consensu model
    -T, --theta=T: Theta paramter (error dependency coefficient)
    -N, --hapNum=N: Number of haplotypes in sample
@@ -49,6 +50,7 @@ def get_bam_seqs(inputBamFile, min_size=1):
 def run_cmd(cmd, tmpDir):
     tmp = tempfile.NamedTemporaryFile( dir=tmpDir ).name
     tmp_stderr = open( tmp, 'wb' )
+    print "Running", cmd
     proc = subprocess.Popen( args=cmd, shell=True, cwd=tmpDir, stderr=tmp_stderr.fileno() )
     returncode = proc.wait()
     tmp_stderr.close()
@@ -118,6 +120,8 @@ def __main__():
         indels = ''
     #opts = '%s %s -M %s' % ( lastCol, indels, options.mapCap )
     opts = ''
+    if options.nobaq == 'yes':
+        opts += " -B "
     if options.consensus == 'yes':
         opts += ' -c -T %s -N %s -r %s -I %s' % ( options.theta, options.hapNum, options.fraction, options.phredProb )
     #prepare basic pileup command
