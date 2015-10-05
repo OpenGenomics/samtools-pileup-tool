@@ -13,6 +13,7 @@ usage: %prog [options]
    -g, --index=g: Path of the indexed reference genome
    -s, --lastCol=s: Print the mapping quality as the last column
    -i, --indels=i: Only output lines containing indels
+   -M, --mapqMin=i: Filter reads by min MAPQ
    -B, --nobaq=s: disable BAQ computation
    -c, --consensus=c: Call the consensus sequence using MAQ consensu model
    -T, --theta=T: Theta paramter (error dependency coefficient)
@@ -124,6 +125,8 @@ def __main__():
         opts += " -B "
     if options.consensus == 'yes':
         opts += ' -c -T %s -N %s -r %s -I %s' % ( options.theta, options.hapNum, options.fraction, options.phredProb )
+    if options.mapqMin:
+        opts += ' -q %d' % (options.mapqMin)
     #prepare basic pileup command
     cmd = 'samtools mpileup %s %s -f %s %s > %s'
     cmd_list = None

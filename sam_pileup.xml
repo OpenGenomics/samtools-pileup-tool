@@ -32,6 +32,9 @@
         --fraction="None"
         --phredProb="None"
       #end if
+      #if $mapq.filter == "yes":
+        --mapqMin=${mapq.min}
+      #end if
   </command>
   <inputs>
     <conditional name="refOrHistory">
@@ -69,6 +72,16 @@
       <option value="no">Enabled</option>
       <option value="yes">Disabled</option>
     </param>
+    <conditional name="mapq">
+      <param name="filter" type="select" label="Filter by MAPQ?">
+        <option selected="true" value="no">No</option>
+        <option value="yes">Yes</option>
+      </param>
+      <when value="no" />
+      <when value="yes">
+        <param name="min" type="integer" value="1" label="Min MAPQ" />
+      </when>
+    </conditional>
     <conditional name="c">
       <param name="consensus" type="select" label="Call consensus according to MAQ model?">
         <option selected="true" value="no">No</option>
