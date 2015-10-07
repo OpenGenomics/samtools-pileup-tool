@@ -126,7 +126,7 @@ def __main__():
     if options.consensus == 'yes':
         opts += ' -c -T %s -N %s -r %s -I %s' % ( options.theta, options.hapNum, options.fraction, options.phredProb )
     if options.mapqMin:
-        opts += ' -q %d' % (options.mapqMin)
+        opts += ' -q %s' % (options.mapqMin)
     #prepare basic pileup command
     cmd = 'samtools mpileup %s %s -f %s %s > %s'
     cmd_list = None
