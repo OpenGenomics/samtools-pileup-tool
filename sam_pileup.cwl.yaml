@@ -1,0 +1,45 @@
+class: CommandLineTool
+label: SamTools Pileup
+baseCommand: ["samtools", "mpileup"]
+requirements:
+  - class: "DockerRequirement"
+    dockerImageId: "sam_pileup:1.1.2"
+# samtools mpileup  -B  -q 1  -f reference.fa > output
+inputs:
+  
+  - id: "#noBaq"
+    type: boolean
+    description: disable BAQ (per-Base Alignment Quality)
+    default: False
+    inputBinding:
+      prefix: -B
+
+  - id: "#minMapQ"
+    description:   -q, --min-MQ INT        skip alignments with mapQ smaller than INT [0]
+    type: int
+    default: 0
+    inputBinding:
+      prefix: -q
+  
+  - id: "#reference"
+    type: File
+    inputBinding:
+      prefix: -f
+      secondaryFiles:
+        - .fai
+
+  - id: "#input"
+    type: File
+    input:
+      position: 1
+      secondaryFiles:
+        - .bai
+
+stdout: output.pileup
+
+outputs:
+  - id: "#output"
+    type: File
+    outputBinding:
+      glob: output.pileup
+
