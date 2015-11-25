@@ -30,7 +30,7 @@ inputs:
 
   - id: "#input"
     type: File
-    input:
+    inputBinding:
       position: 1
       secondaryFiles:
         - .bai
