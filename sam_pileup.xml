@@ -4,7 +4,7 @@
     <requirement type="package" version="0.1.16">samtools</requirement>
   </requirements -->
   <requirements>
-      <container type="docker">sam_pileup:1.1.2</container>
+      <container type="docker">opengenomics/samtools_pileup:1.1.2</container>
   </requirements>
   <command interpreter="python">
     sam_pileup.py
