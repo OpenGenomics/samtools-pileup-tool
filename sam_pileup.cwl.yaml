@@ -1,3 +1,4 @@
+cwlVersion: v1.0
 class: CommandLineTool
 label: SamTools Pileup
 baseCommand: ["samtools", "mpileup"]
@@ -7,38 +8,38 @@ requirements:
 # samtools mpileup  -B  -q 1  -f reference.fa > output
 inputs:
   
-  - id: "#noBaq"
+  - id: noBaq
     type: boolean
-    description: disable BAQ (per-Base Alignment Quality)
+    doc: disable BAQ (per-Base Alignment Quality)
     default: False
     inputBinding:
-      prefix: -B
+      prefix: "-B"
 
-  - id: "#minMapQ"
-    description:   -q, --min-MQ INT        skip alignments with mapQ smaller than INT [0]
+  - id: minMapQ
+    doc:   -q, --min-MQ INT        skip alignments with mapQ smaller than INT [0]
     type: int
     default: 0
     inputBinding:
-      prefix: -q
+      prefix: "-q"
   
-  - id: "#reference"
+  - id: reference
     type: File
     inputBinding:
       prefix: -f
-      secondaryFiles:
-        - .fai
+    secondaryFiles:
+      - .fai
 
-  - id: "#input"
+  - id: input
     type: File
     inputBinding:
       position: 1
-      secondaryFiles:
-        - .bai
+    secondaryFiles:
+      - .bai
 
 stdout: output.pileup
 
 outputs:
-  - id: "#output"
+  - id: output
     type: File
     outputBinding:
       glob: output.pileup
