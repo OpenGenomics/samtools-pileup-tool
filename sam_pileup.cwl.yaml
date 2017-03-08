@@ -4,7 +4,7 @@ label: SamTools Pileup
 baseCommand: ["samtools", "mpileup"]
 requirements:
   - class: "DockerRequirement"
-    dockerImageId: "opengenomics/samtools_pileup:1.1.2"
+    dockerPull: "opengenomics/samtools_pileup:1.1.2"
 # samtools mpileup  -B  -q 1  -f reference.fa > output
 inputs:
   
