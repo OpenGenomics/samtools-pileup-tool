@@ -26,15 +26,17 @@ inputs:
     type: File
     inputBinding:
       prefix: -f
-    secondaryFiles:
-      - .fai
+
+  - id: reference_index
+    type: File
 
   - id: input
     type: File
     inputBinding:
       position: 1
-    secondaryFiles:
-      - .bai
+
+  - id: input_index
+    type: File
 
 stdout: output.pileup
 
