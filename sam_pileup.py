@@ -93,7 +93,7 @@ def __main__():
         sys.stdout.write( 'Could not determine Samtools version\n' )
     #prepare file names
     if options.workdir is None:
-        tmpDir = tempfile.mkdtemp()
+        tmpDir = tempfile.mkdtemp(dir='.')
     else:
         tmpDir = tempfile.mkdtemp(dir=options.workdir)
     tmpf0 = tempfile.NamedTemporaryFile( dir=tmpDir )
