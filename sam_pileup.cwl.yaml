@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 label: SamTools Pileup
-baseCommand: ["samtools", "mpileup"]
+baseCommand: ["samtools", "mpileup", "-o", "output.pileup"]
 requirements:
   - class: "DockerRequirement"
     dockerPull: "opengenomics/samtools-pileup:latest"
@@ -35,8 +35,6 @@ inputs:
       position: 1
     secondaryFiles:
       - .bai
-
-stdout: output.pileup
 
 outputs:
   - id: output
