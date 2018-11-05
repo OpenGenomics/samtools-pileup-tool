@@ -1,0 +1,14 @@
+#####
+## If generating JSON for multiple samples, replace '</full/file/path>' or 'null' with '<>', then complete sam_pileup.sample_list.tab. See
+## ./backup_templates/sam_pileup.sample_list.template for examples. Be certain to provide a unique identifier under the 'run_uid' header to
+## clearly distinguish samples/runs. If *optional* sample-specific values are desired, the appropriate key from this template may be used as
+## a column header in sam_pileup.sample_list.tab (be careful to maintain tab-delimited format).
+#####
+input: {
+    class: File
+    path: </full/file/path>         # Required file; replace '</full/file/path>' with full path to input BAM [e.g., /my/path/to/input.bam]
+reference: {
+    class: File
+    path: </full/file/path>         # Required file; replace '</full/file/path>' with full path to reference FASTA [e.g., /my/path/to/genome.fa.gz]
+minMapQ: null                       # Optional integer; skip alignments with mapQ smaller than this value; 'null' defaults to '0'
+noBaq: false                        # Optional boolean; replace 'false' with 'true' to disable per-Base Alignment Quality; 'null' defaults to 'false'
